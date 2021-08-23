@@ -50,6 +50,13 @@ val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
         val minTXT = findViewById<TextView>(R.id.MinTXT);
         val mainStatusIMG = findViewById<ImageView>(R.id.StatusIMG);
 
+        val d1StatusIMG = findViewById<ImageView>(R.id.D1imageView);
+        val d2StatusIMG = findViewById<ImageView>(R.id.D2imageView);
+        val d3StatusIMG = findViewById<ImageView>(R.id.D3imageView);
+        val d4StatusIMG = findViewById<ImageView>(R.id.D4imageView);
+
+
+
 
 
         var selected =1;
@@ -154,6 +161,10 @@ fun colorChange(index:Int){
                  d4textViewDate.text = dateConverter(datesTemps[3]);
 
 
+                 iconSelector(0,d1StatusIMG);
+                 iconSelector(1,d2StatusIMG);
+                 iconSelector(2,d3StatusIMG);
+                 iconSelector(3,d4StatusIMG);
 
                  colorChange(0);
 

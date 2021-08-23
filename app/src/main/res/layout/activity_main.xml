@@ -9,16 +9,47 @@
     android:textAlignment="center"
     tools:context=".MainActivity">
 
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/DaysLL"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Status" />
+
+        <com.google.android.material.tabs.TabItem
+            android:id="@+id/tabItem2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location" />
+
+    </com.google.android.material.tabs.TabLayout>
+
     <LinearLayout
         android:id="@+id/LocationLL"
-        android:layout_width="match_parent"
-        android:layout_height="67dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="185dp"
+        android:layout_height="63dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/tabLayout">
 
         <TextView
             android:id="@+id/textView"
@@ -172,13 +203,13 @@
                 android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
-                app:layout_constraintBottom_toTopOf="@+id/D2imageView7"
+                app:layout_constraintBottom_toTopOf="@+id/D1imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/D2imageView7"
+                android:id="@+id/D1imageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -202,7 +233,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/D2imageView7" />
+                app:layout_constraintTop_toBottomOf="@+id/D1imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -221,13 +252,13 @@
                 android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
-                app:layout_constraintBottom_toTopOf="@+id/imageView7"
+                app:layout_constraintBottom_toTopOf="@+id/D2imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/D2imageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -253,7 +284,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+                app:layout_constraintTop_toBottomOf="@+id/D2imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -272,24 +303,24 @@
                 android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
-                app:layout_constraintBottom_toTopOf="@+id/D4imageView7"
+                app:layout_constraintBottom_toTopOf="@+id/D3imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/D4imageView7"
+                android:id="@+id/D3imageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="centerInside"
-                app:srcCompat="@drawable/ic_clear"
                 app:layout_constraintBottom_toTopOf="@+id/D3smallTempTXT"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/D3textViewDate" />
+                app:layout_constraintTop_toBottomOf="@+id/D3textViewDate"
+                app:srcCompat="@drawable/ic_clear" />
 
             <TextView
                 android:id="@+id/D3smallTempTXT"
@@ -302,7 +333,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/D4imageView7" />
+                app:layout_constraintTop_toBottomOf="@+id/D3imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -321,13 +352,13 @@
                 android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
-                app:layout_constraintBottom_toTopOf="@+id/D3imageView7"
+                app:layout_constraintBottom_toTopOf="@+id/D4imageView"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/D3imageView7"
+                android:id="@+id/D4imageView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginTop="8dp"
@@ -353,7 +384,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/D3imageView7" />
+                app:layout_constraintTop_toBottomOf="@+id/D4imageView" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
