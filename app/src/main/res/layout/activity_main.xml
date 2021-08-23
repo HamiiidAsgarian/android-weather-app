@@ -54,7 +54,7 @@
             android:id="@+id/StatusIMG"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_asset_10"
+            app:srcCompat="@android:drawable/ic_lock_idle_alarm"
             tools:visibility="visible" />
     </FrameLayout>
 
@@ -74,7 +74,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/MainDayTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingLeft="8sp"
@@ -102,13 +102,13 @@
                     app:srcCompat="@drawable/ic_baseline_arrow_upward_24" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/MinTXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25"
+                    android:text="NA"
                     android:textAlignment="center"
                     app:layout_constraintStart_toEndOf="@+id/imageView9"
-                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+                    app:layout_constraintTop_toBottomOf="@+id/MainDayTXT" />
 
                 <ImageView
                     android:id="@+id/imageView12"
@@ -121,10 +121,10 @@
                     tools:layout_editor_absoluteX="33dp" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/MaxTXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="25"
+                    android:text="NA"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="@+id/imageView10"
                     app:layout_constraintTop_toTopOf="@+id/imageView10"
@@ -169,7 +169,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="MON"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
                 app:layout_constraintBottom_toTopOf="@+id/D2imageView7"
@@ -184,19 +184,19 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/snow"
                 app:layout_constraintBottom_toTopOf="@+id/D1smallTempTXT"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/D1textViewDate" />
+                app:layout_constraintTop_toBottomOf="@+id/D1textViewDate"
+                app:srcCompat="@drawable/ic_clear" />
 
             <TextView
                 android:id="@+id/D1smallTempTXT"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:text="24°"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#494848"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -218,7 +218,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="MON"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
                 app:layout_constraintBottom_toTopOf="@+id/imageView7"
@@ -233,12 +233,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/snow"
                 app:layout_constraintBottom_toTopOf="@+id/D2smallTempTXT"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/D2textViewDate" />
+                app:layout_constraintTop_toBottomOf="@+id/D2textViewDate"
+                app:srcCompat="@drawable/ic_clear" />
+            app:srcCompat="@drawable/ic_clear" />
 
 
             <TextView
@@ -246,7 +247,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:text="24°"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#494848"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -268,7 +269,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="MON"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
                 app:layout_constraintBottom_toTopOf="@+id/D4imageView7"
@@ -283,7 +284,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/snow"
+                app:srcCompat="@drawable/ic_clear"
                 app:layout_constraintBottom_toTopOf="@+id/D3smallTempTXT"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -295,7 +296,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:text="24°"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#494848"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -317,7 +318,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
-                android:text="MON"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#3C3F41"
                 app:layout_constraintBottom_toTopOf="@+id/D3imageView7"
@@ -332,12 +333,12 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/snow"
                 app:layout_constraintBottom_toTopOf="@+id/D4smallTempTXT"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/D4textViewDate"
+                app:srcCompat="@drawable/ic_clear"
 
                 />
 
@@ -346,7 +347,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
-                android:text="24°"
+                android:text="NA"
                 android:textAlignment="center"
                 android:textColor="#494848"
                 app:layout_constraintBottom_toBottomOf="parent"

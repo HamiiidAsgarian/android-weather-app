@@ -2,13 +2,16 @@ package com.example.test1
 
 import android.graphics.Color
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import java.util.*
 import kotlin.math.roundToInt
 
 class MainActivity : AppCompatActivity() {
@@ -37,38 +40,54 @@ val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
         val textTempD3 = findViewById<TextView>(R.id.D3smallTempTXT);
         val textTempD4 = findViewById<TextView>(R.id.D4smallTempTXT);
 
-        val D1textViewDate = findViewById<TextView>(R.id.D1smallTempTXT);
-        val D2textViewDate = findViewById<TextView>(R.id.D2smallTempTXT);
-        val D3textViewDate = findViewById<TextView>(R.id.D3smallTempTXT);
-        val D4textViewDate = findViewById<TextView>(R.id.D4smallTempTXT);
+        val d1textViewDate = findViewById<TextView>(R.id.D1textViewDate);
+        val d2textViewDate = findViewById<TextView>(R.id.D2textViewDate);
+        val d3textViewDate = findViewById<TextView>(R.id.D3textViewDate);
+        val d4textViewDate = findViewById<TextView>(R.id.D4textViewDate);
+
+        val mainDayTXT = findViewById<TextView>(R.id.MainDayTXT);
+        val maxTXT = findViewById<TextView>(R.id.MaxTXT);
+        val minTXT = findViewById<TextView>(R.id.MinTXT);
+        val mainStatusIMG = findViewById<ImageView>(R.id.StatusIMG);
+
 
 
         var selected =1;
 
-//        var widgets   = arrayOfNulls<TextView>(4);
-
-//        val tvIds = intArrayOf(
-//            R.id.D1smallTempTXT,
-//            R.id.D2smallTempTXT,
-//            R.id.D3smallTempTXT,
-//            R.id.D4smallTempTXT
-//        );
-
-//        val textViews = ArrayList<TextView>(4)
-
-        var temps   = arrayOfNulls<Int>(4)
-        var minTemps   = arrayOfNulls<Int>(4)
-        var maxTemps   = arrayOfNulls<Int>(4);
-        var statusTemps   = arrayOfNulls<String>(4);
-        var descriptionTemps   = arrayOfNulls<String>(4);
-        var datesTemps   = arrayOfNulls<String>(4);
+        var temps   = mutableListOf<Int>()
+        var minTemps   =  mutableListOf<Int>()
+        var maxTemps   = mutableListOf<Int>()
+        var statusTemps   =mutableListOf<String>()
+        var descriptionTemps   = mutableListOf<String>()
+//        var datesTemps   = arrayOfNulls<String>(4);
+        val datesTemps = mutableListOf<String>()
 
 
+        fun dateConverter( rawData:String): String{
+            val convertedTime = Date(rawData.toInt() * 1000L)
+            val res = convertedTime.toString().slice(0..3)
+            return (res);
+        }
+        fun iconSelector(index:Int,element:ImageView){
+            when(statusTemps[index]){
+                "Clear" -> element.setImageResource(R.drawable.ic_clear);
+                "Clouds" ->element.setImageResource(R.drawable.ic_clouds);
+                "Snow" ->element.setImageResource(R.drawable.ic_snow);
+                "Rain" ->element.setImageResource(R.drawable.ic_rain);
+                "Drizzle" ->element.setImageResource(R.drawable.ic_drizzle);
+                "Thunderstorm" ->element.setImageResource(R.drawable.ic_thunderstorm);
 
-//        minTemps = [1,2,3]
+            }
+        }
+fun colorChange(index:Int){
+     text.text = temps[index].toString() + "°";
+     mainDayTXT.text = dateConverter(datesTemps[index]);
+     maxTXT.text =maxTemps[index].toString();
+     minTXT.text = minTemps[index].toString();
+//    Toast.makeText(this, minTemps[1], Toast.LENGTH_SHORT).show()
+//    println(temps[index]);
+//    Toast.makeText(this, temps[index], Toast.LENGTH_SHORT).show()
 
-
-fun colorChange(){
     day1C.setBackgroundColor(Color.parseColor("#B8FFF6"));
       day2C.setBackgroundColor(Color.parseColor("#B8FFF6"));
     day3C.setBackgroundColor(Color.parseColor("#B8FFF6"));
@@ -79,103 +98,95 @@ fun colorChange(){
         3 -> day3C.setBackgroundColor(Color.parseColor("#FF42CDBC"));
         4 -> day4C.setBackgroundColor(Color.parseColor("#FF42CDBC"));
     }
+    iconSelector(index,mainStatusIMG);
+//    when(statusTemps[index]){
+//        "Clear" -> mainStatusIMG.setImageResource(R.drawable.ic_clear);
+//        "Clouds" ->mainStatusIMG.setImageResource(R.drawable.ic_clouds);
+//        "Snow" ->mainStatusIMG.setImageResource(R.drawable.ic_snow);
+//        "Rain" ->mainStatusIMG.setImageResource(R.drawable.ic_rain);
+//        "Drizzle" ->mainStatusIMG.setImageResource(R.drawable.ic_drizzle);
+//        "Thunderstorm" ->mainStatusIMG.setImageResource(R.drawable.ic_thunderstorm);
+//
+//    }
 }
+
+
         fun a(){
-     val url = "http://api.openweathermap.org/data/2.5/forecast?q=New%20York&appid=24163948dd9155adff1bbec6f4ecac4b&cnt=5"
-     val que = Volley.newRequestQueue(this@MainActivity)
+//     val url = "http://api.openweathermap.org/data/2.5/forecast?q=Los%20Angeles&appid=24163948dd9155adff1bbec6f4ecac4b&cnt=5&units=metric";
+            val url =   "http://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=minutely,hourly&appid=24163948dd9155adff1bbec6f4ecac4b&cnt=5&units=metric"
+     val que = Volley.newRequestQueue(this@MainActivity);
 
      val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
-         { response ->
-             for (i in 1..4) {
-                 temps.set(
-                     i - 1, response.getJSONArray("list").getJSONObject(i)
-                         .getJSONObject("main")["temp"].toString().toDouble().roundToInt() / 10
-                 );
-                 maxTemps.toMutableList().add(
-                     i - 1, response.getJSONArray("list").getJSONObject(i)
-                         .getJSONObject("main")["temp_max"].toString().toDouble().roundToInt() / 10
-                 )
-                 minTemps.toMutableList().add(
-                     i - 1, response.getJSONArray("list").getJSONObject(i)
-                         .getJSONObject("main")["temp_min"].toString().toDouble().roundToInt() / 10
-                 );
-                 statusTemps.toMutableList().add(
-                     i - 1, response.getJSONArray("list").getJSONObject(i)
-                         .getJSONArray("weather").getJSONObject(0)["main"].toString()
-                 );
-                 descriptionTemps.toMutableList().add(
-                     i - 1, response.getJSONArray("list").getJSONObject(i)
-                         .getJSONArray("weather").getJSONObject(0)["description"].toString()
-                 );
-                 datesTemps.toMutableList().add(
-                     i - 1, response.getJSONArray("list").getJSONObject(i)["dt_txt"].toString());
+             { response ->
+                 for (i in 0..3) {
 
-             }
-//             val temp = response.getJSONArray("list").getJSONObject(id)
-//                 .getJSONObject("main")["temp"].toString().toDouble().roundToInt()/10 ;
-//             text.text = temp.toString()+"°"
+                     temps.add(
+                              response.getJSONArray("daily").getJSONObject(i).getJSONObject("temp")["day"].toString().toDouble().roundToInt()
+                     );
+                     maxTemps.add(
+                              response.getJSONArray("daily").getJSONObject(i).getJSONObject("temp")["max"].toString().toDouble().roundToInt()
+                     )
+                     minTemps.add(
+                             response.getJSONArray("daily").getJSONObject(i).getJSONObject("temp")["min"].toString().toDouble().roundToInt()
+                     );
+                     statusTemps.add(
+                              response.getJSONArray("daily").getJSONObject(i).getJSONArray("weather").getJSONObject(0)["main"].toString()
+                     );
+                     descriptionTemps.add(
+                              response.getJSONArray("daily").getJSONObject(i).getJSONArray("weather").getJSONObject(0)["description"].toString()
+                     );
 
-             text.text = temps[0].toString() + "°";////
-             textTempD1.text = temps[0].toString();
-             textTempD2.text = temps[1].toString();
-             textTempD3.text = temps[2].toString();
-             textTempD4.text = temps[3].toString();
+                     datesTemps.add( response.getJSONArray("daily").getJSONObject(i)["dt"].toString());
 
-             val strs = datesTemps[0]?.split("", ignoreCase = false, limit = 5)?.last();
-             val strs2 = "datesTemps[1]?".split("", ignoreCase = true, limit = 2).last();
-             val strs3 = datesTemps[2]?.slice(5..10); //here
-             val strs4 = datesTemps[3]?.split("", ignoreCase = true, limit = 5)?.last();
+                 }
 
-             D1textViewDate.text = strs;
-             D2textViewDate.text = strs2;
-             D3textViewDate.text = strs3;
-             D4textViewDate.text = strs4;
+//                 Toast.makeText(this,dateConverter(datesTemps[1].toString())  , Toast.LENGTH_SHORT).show()
+
+//                 text.text = temps[0].toString() + "°";
+                 textTempD1.text = temps[0].toString() + "°";
+                 textTempD2.text = temps[1].toString() + "°";
+                 textTempD3.text = temps[2].toString() + "°";
+                 textTempD4.text = temps[3].toString() + "°";
+
+                 d1textViewDate.text = dateConverter(datesTemps[0]);
+                 d2textViewDate.text = dateConverter(datesTemps[1]);
+                 d3textViewDate.text = dateConverter(datesTemps[2]);
+                 d4textViewDate.text = dateConverter(datesTemps[3]);
 
 
 
-
-//             val temp1 = response.getJSONArray("list").getJSONObject(1)
-//                 .getJSONObject("main")["temp"].toString().toDouble().roundToInt()/10 ;
-//             textTempD1.text = temp1.toString()+"°"
-//             val temp2 = response.getJSONArray("list").getJSONObject(2)
-//                 .getJSONObject("main")["temp"].toString().toDouble().roundToInt()/10 ;
-//             textTempD2.text = temp2.toString()+"°"
-//             val temp3 = response.getJSONArray("list").getJSONObject(3)
-//                 .getJSONObject("main")["temp"].toString().toDouble().roundToInt()/10 ;
-//             textTempD3.text = temp3.toString()+"°"
-//             val temp4 = response.getJSONArray("list").getJSONObject(4)
-//                 .getJSONObject("main")["temp"].toString().toDouble().roundToInt()/10 ;
-//             textTempD4.text = temp4.toString()+"°"
+                 colorChange(0);
 
 
-         },
-         { error ->
-             println(error);
+             },
+             { error ->
+                 println("err333333333333333333333333or");
+                 println(error)
 //             text.text = "Response: %s".format(error.toString())
-         }
+             }
      )
      que.add(jsonObjectRequest);
  }//end function
 
-        a()
-        colorChange();
+        a();
+//        colorChange(1);
 
 
         day1C?.setOnClickListener(){
             selected=1;
-            colorChange();
+            colorChange(0);
         }
         day2C?.setOnClickListener(){
             selected=2;
-            colorChange();
+            colorChange(1);
         }
         day3C?.setOnClickListener(){
             selected=3;
-            colorChange();
+            colorChange(2);
         }
         day4C?.setOnClickListener(){
             selected=4;
-            colorChange();
+            colorChange(3);
         }
 
 
