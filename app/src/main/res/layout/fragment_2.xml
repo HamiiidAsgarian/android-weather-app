@@ -5,10 +5,35 @@
     android:layout_height="match_parent"
     tools:context=".Fragment2">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ListView
+        android:id="@+id/ListView1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent" />
 
+    <RelativeLayout
+        android:id="@+id/tt1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btnn"
+            android:layout_width="339dp"
+            android:layout_height="244dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="221dp"
+            android:layout_marginEnd="29dp"
+            android:layout_marginBottom="266dp"
+            android:text="Button"
+            tools:visibility="gone" />
+
+        <TextView
+            android:id="@+id/ttt"
+            android:layout_width="282dp"
+            android:layout_height="155dp"
+            android:text="TextView"
+            tools:visibility="gone" />
+
+    </RelativeLayout>
 </FrameLayout>

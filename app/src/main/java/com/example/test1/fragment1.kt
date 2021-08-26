@@ -1,48 +1,51 @@
 package com.example.test1
 
-import androidx.fragment.app.Fragment
+import android.graphics.Color
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.inline.InlineContentView
-import java.util.*
-
-import android.graphics.Color
-import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TableLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.viewpager.widget.ViewPager
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.google.android.material.tabs.TabItem
-import com.google.android.material.tabs.TabLayout
-import com.google.android.material.tabs.TabLayoutMediator
 import java.util.*
 import kotlin.math.roundToInt
+
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [fragment1.newInstance] factory method to
- * create an instance of this fragment.
- */
+public var axxx = "XXXX"
 
 class Fragment1 : Fragment() {
+    fun getDataFromFragmentOne(item: String?) {
+        // Do the mannipulation
+    }
     // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    public var cityNameParam: String? = "C name"
+    public var cityInfoParam: String? = "C info"
 
+//    private var param2: String? = null
+
+    fun printer(cityName: String,cityInfo:String){
+        cityNameParam = cityName
+        cityInfoParam = cityInfo
+//        view?.findViewById<TextView>(R.id.textViewLocation)?.text = a.toString()
+//        Toast.makeText(requireContext(), a + "-----" + this.arguments.toString(), Toast.LENGTH_SHORT).show()
+
+
+        getFragmentManager()?.beginTransaction()?.detach(this)?.attach(this)?.commit();
+
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,17 +58,42 @@ class Fragment1 : Fragment() {
 
     override fun onCreateView(
 
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
 
-val view:View = inflater.inflate(R.layout.fragment_1, container, false)
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
+
+    ): View? {
+        println("-----------------");
+
+
+        val view:View = inflater.inflate(R.layout.fragment_1, container, false)
         //////////**********************************************----------------------------------------------------------
+
+
+
+
+        val locationTXT = view.findViewById<TextView>(R.id.textViewLocation);
+
+//        val bundle0 = this.arguments;
+//        val mm = bundle0?.getString("d1")
+//
+
+//        locationTXT.text =mm.toString();
+        locationTXT.text =cityNameParam
+
+////
+//        val bundle = this.arguments
+//       val z = bundle?.getString("data1")
+//        if (bundle != null) {
+//            locationTXT.text = z.toString()
+//        }
+
 
         val day1C =view.findViewById<ConstraintLayout>(R.id.Day1Constraint)
         val day2C = view.findViewById<ConstraintLayout>(R.id.Day2Constraint)
         val day3C = view.findViewById<ConstraintLayout>(R.id.Day3Constraint)
         val day4C = view.findViewById<ConstraintLayout>(R.id.Day4Constraint)
+
 
 
         val text = view.findViewById<TextView>(R.id.MainTemperatureTXT);
@@ -116,23 +144,23 @@ val view:View = inflater.inflate(R.layout.fragment_1, container, false)
         val datesTemps = mutableListOf<String>()
 
 
-        fun dateConverter( rawData:String): String{
+        fun dateConverter(rawData: String): String{
             val convertedTime = Date(rawData.toInt() * 1000L)
             val res = convertedTime.toString().slice(0..3)
             return (res);
         }
-        fun iconSelector(index:Int,element:ImageView){
+        fun iconSelector(index: Int, element: ImageView){
             when(statusTemps[index]){
                 "Clear" -> element.setImageResource(R.drawable.ic_clear);
-                "Clouds" ->element.setImageResource(R.drawable.ic_clouds);
-                "Snow" ->element.setImageResource(R.drawable.ic_snow);
-                "Rain" ->element.setImageResource(R.drawable.ic_rain);
-                "Drizzle" ->element.setImageResource(R.drawable.ic_drizzle);
-                "Thunderstorm" ->element.setImageResource(R.drawable.ic_thunderstorm);
+                "Clouds" -> element.setImageResource(R.drawable.ic_clouds);
+                "Snow" -> element.setImageResource(R.drawable.ic_snow);
+                "Rain" -> element.setImageResource(R.drawable.ic_rain);
+                "Drizzle" -> element.setImageResource(R.drawable.ic_drizzle);
+                "Thunderstorm" -> element.setImageResource(R.drawable.ic_thunderstorm);
 
             }
         }
-        fun colorChange(index:Int){
+        fun colorChange(index: Int){
             text.text = temps[index].toString() + "°";
             mainDayTXT.text = dateConverter(datesTemps[index]);
             maxTXT.text =maxTemps[index].toString();
@@ -151,7 +179,7 @@ val view:View = inflater.inflate(R.layout.fragment_1, container, false)
                 3 -> day3C.setBackgroundColor(Color.parseColor("#FF42CDBC"));
                 4 -> day4C.setBackgroundColor(Color.parseColor("#FF42CDBC"));
             }
-            iconSelector(index,mainStatusIMG);
+            iconSelector(index, mainStatusIMG);
 //    when(statusTemps[index]){
 //        "Clear" -> mainStatusIMG.setImageResource(R.drawable.ic_clear);
 //        "Clouds" ->mainStatusIMG.setImageResource(R.drawable.ic_clouds);
@@ -162,11 +190,16 @@ val view:View = inflater.inflate(R.layout.fragment_1, container, false)
 //
 //    }
         }
+        //****************************************
+//        val bundle = this.arguments
+//        val myInt = bundle?.getString("str");
+//        Toast.makeText(requireContext(), myInt, Toast.LENGTH_SHORT).show()
+//        LocationTXT.text = myInt.toString();
 
 
         fun a(){
 //     val url = "http://api.openweathermap.org/data/2.5/forecast?q=Los%20Angeles&appid=24163948dd9155adff1bbec6f4ecac4b&cnt=5&units=metric";
-            val url =   "http://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=minutely,hourly&appid=24163948dd9155adff1bbec6f4ecac4b&cnt=5&units=metric"
+            val url =   "http://api.openweathermap.org/data/2.5/onecall?lat=${cityInfo.split(",")[0]}&lon=${cityInfo.split(",")[1]}&exclude=minutely,hourly&appid=24163948dd9155adff1bbec6f4ecac4b&cnt=5&units=metric"
             val que = Volley.newRequestQueue(this.context);
 
             val jsonObjectRequest = JsonObjectRequest(Request.Method.GET, url, null,
@@ -189,13 +222,14 @@ val view:View = inflater.inflate(R.layout.fragment_1, container, false)
                                     response.getJSONArray("daily").getJSONObject(i).getJSONArray("weather").getJSONObject(0)["description"].toString()
                             );
 
-                            datesTemps.add( response.getJSONArray("daily").getJSONObject(i)["dt"].toString());
+                            datesTemps.add(response.getJSONArray("daily").getJSONObject(i)["dt"].toString());
 
                         }
 
 //                 Toast.makeText(this,dateConverter(datesTemps[1].toString())  , Toast.LENGTH_SHORT).show()
 
 //                 text.text = temps[0].toString() + "°";
+
                         textTempD1.text = temps[0].toString() + "°";
                         textTempD2.text = temps[1].toString() + "°";
                         textTempD3.text = temps[2].toString() + "°";
@@ -207,10 +241,11 @@ val view:View = inflater.inflate(R.layout.fragment_1, container, false)
                         d4textViewDate.text = dateConverter(datesTemps[3]);
 
 
-                        iconSelector(0,d1StatusIMG);
-                        iconSelector(1,d2StatusIMG);
-                        iconSelector(2,d3StatusIMG);
-                        iconSelector(3,d4StatusIMG);
+                        iconSelector(0, d1StatusIMG);
+                        iconSelector(1, d2StatusIMG);
+                        iconSelector(2, d3StatusIMG);
+                        iconSelector(3, d4StatusIMG);
+
 
                         colorChange(0);
 

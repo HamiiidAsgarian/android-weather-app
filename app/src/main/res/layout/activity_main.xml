@@ -5,7 +5,7 @@
     android:id="@+id/text1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E7FCFF"
+    android:background="#4EB1BF"
     android:textAlignment="center"
     tools:context=".MainActivity">
 
@@ -13,6 +13,7 @@
         android:id="@+id/viewPager2id"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="#E7FCFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -23,25 +24,30 @@
         android:id="@+id/tabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#B8FFF6"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:tabGravity="fill"
+        app:tabIndicatorColor="#42CDBC"
+        app:tabMode="fixed"
+        app:tabTextColor="#4A4A4A"
         tools:visibility="visible">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabItem1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Status"
-            tools:visibility="gone" />
+            android:text="@string/status"
+            tools:visibility="visible" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/tabItem2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Location"
-            tools:visibility="gone" />
+            android:text="@string/location"
+            tools:visibility="visible" />
 
     </com.google.android.material.tabs.TabLayout>
 
