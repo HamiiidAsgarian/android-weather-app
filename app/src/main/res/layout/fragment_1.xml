@@ -20,6 +20,7 @@
             android:id="@+id/LocationLL"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +37,7 @@
                 android:textSize="36sp" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/SubtextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Colifornia,USA"

@@ -61,7 +61,7 @@ class Fragment2 : Fragment() {
         }
 
         val itemsAdapter: ArrayAdapter<String> = ArrayAdapter<String>(requireContext(), android.R.layout.simple_list_item_1, name)
-var btn = view.findViewById<Button>(R.id.btnn)
+//var btn = view.findViewById<Button>(R.id.btnn)
 
         // attach the array adapter with list view
         ListView1.adapter = itemsAdapter
@@ -70,7 +70,7 @@ var btn = view.findViewById<Button>(R.id.btnn)
         ListView1.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
 //            val selectedItem = parent.getItemAtPosition(position)
 //            itemsAdapter.add(name[position])
-            Toast.makeText(requireContext(),name[id.toInt()], Toast.LENGTH_SHORT).show()
+//            Toast.makeText(requireContext(),this.tag, Toast.LENGTH_SHORT).show()
 
             val bundle = Bundle()
             val cityNames = name[id.toInt()]

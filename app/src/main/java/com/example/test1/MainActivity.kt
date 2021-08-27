@@ -1,23 +1,32 @@
 package com.example.test1
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+
 
 class MainActivity : AppCompatActivity() {
 
 val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
 
+    private val fragmentRefreshListener = null
+
+
     private  lateinit var tabLayout: TabLayout
     private lateinit var viewPager2: ViewPager2
     private  lateinit var adaptor: PageAdaptor
+private  var test =" zz";
+
+   fun getMyData():String{
+        println("aaa")
+       return test
+    }
 
     interface MyInterface {
         fun foo() {
@@ -30,8 +39,8 @@ val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
 
         setContentView(R.layout.activity_main)
 
-        var tab1 = findViewById<TabLayout.TabView>(R.id.tabItem1)
-        var tab2 = findViewById<TabLayout.TabView>(R.id.tabItem2)
+//        var tab1 = findViewById<TabLayout.TabView>(R.id.tabItem1)
+//        var tab2 = findViewById<TabLayout.TabView>(R.id.tabItem2)
 
         var valueT = "no"
 //
@@ -56,7 +65,10 @@ val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
         adaptor = PageAdaptor(supportFragmentManager, lifecycle, fr1, fr2)
         viewPager2.adapter = adaptor
 
+
+
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            @SuppressLint("RestrictedApi")
             override fun onTabSelected(tab: TabLayout.Tab?) {
 
                 val bundle0 = fr2.arguments;
@@ -64,22 +76,40 @@ val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
                 val cityInfo = bundle0?.getString("cityInfo")
 
 
-                Toast.makeText(applicationContext, cityInfo + cityNames, Toast.LENGTH_SHORT).show()
+//                Toast.makeText(applicationContext, tab?.position.toString(), Toast.LENGTH_SHORT).show()
                 ////////////////////////////////////////
 
-//                val bundle = Bundle()
-//                bundle.putString("d1", res)
-//
-//                fr1.arguments = bundle
                 //////////////////////////////////////////
-    if (tab?.position==1){
-        if (cityNames != null && cityInfo != null) {
-                fr1.printer(cityNames,cityInfo)
-        }
+//                fr1.onResume(){ println("a")}
 
-}
+                if (tab?.position == 0) {
+                    val bundle = Bundle()
+                    bundle.putString("d1", cityInfo)
 
+                    fr1.arguments = bundle
 
+                    if (cityNames != null && cityInfo != null) {
+                        fr1.printer(cityNames, cityInfo)
+//                        fr1 =Fragment1()
+//                        adaptor.one = Fragment1();
+
+//                        val fragment: Fragment1 = supportFragmentManager.fragments[0] as Fragment1
+                        supportFragmentManager.beginTransaction()
+                                .detach(fr1)
+                                .attach(fr1)
+                                .commit();
+
+                    var aaa =viewPager2.adapter
+                        aaa?.notifyDataSetChanged();//recreate()
+                    }
+//                    var frg: Fragment? = null
+//                    frg = supportFragmentManager.findFragmentByTag("f0")
+//                    val ft = supportFragmentManager.beginTransaction()
+//                    ft.detach(frg!!)
+//                    ft.attach(frg!!)
+//                    ft.commit()
+                   adaptor.notifyDataSetChanged()
+                }
 
 
             }
@@ -109,4 +139,6 @@ val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
 
 
 }
+
+
 

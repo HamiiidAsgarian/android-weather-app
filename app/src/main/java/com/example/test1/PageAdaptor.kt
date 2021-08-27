@@ -1,19 +1,20 @@
 package com.example.test1
 
-import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
+import androidx.viewpager.widget.PagerAdapter.POSITION_NONE
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
 
-class PageAdaptor(fm: FragmentManager, lifecycle: Lifecycle, fr1:Fragment1,fr2:Fragment2):FragmentStateAdapter(fm, lifecycle) {
+class PageAdaptor(fm: FragmentManager, lifecycle: Lifecycle, fr1: Fragment1, fr2: Fragment2):FragmentStateAdapter(fm, lifecycle) {
+
+//   override fun getItemPosition(`object`: Any?): Int {
+//            return POSITION_NONE
+//    }
 
 
-
-
-
-     var one = fr1
+    var one = fr1
      var two = fr2
 
 

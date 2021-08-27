@@ -10,7 +10,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -26,6 +25,8 @@ private const val ARG_PARAM2 = "param2"
 public var axxx = "XXXX"
 
 class Fragment1 : Fragment() {
+
+
     fun getDataFromFragmentOne(item: String?) {
         // Do the mannipulation
     }
@@ -35,15 +36,19 @@ class Fragment1 : Fragment() {
 
 //    private var param2: String? = null
 
-    fun printer(cityName: String,cityInfo:String){
+    fun printer(cityName: String, cityInfo: String){
+        
         cityNameParam = cityName
         cityInfoParam = cityInfo
-//        view?.findViewById<TextView>(R.id.textViewLocation)?.text = a.toString()
+        view?.findViewById<TextView>(R.id.textViewLocation)?.text = cityNameParam.toString()
 //        Toast.makeText(requireContext(), a + "-----" + this.arguments.toString(), Toast.LENGTH_SHORT).show()
 
+        Toast.makeText(requireContext(), cityInfo + cityNameParam, Toast.LENGTH_SHORT).show()
 
-        getFragmentManager()?.beginTransaction()?.detach(this)?.attach(this)?.commit();
+//        ((MainActivity) getActivity()).getSomeDataFromActivity()
 
+this.onResume()
+//       Fr.beginTransaction()?.detach(this)?.attach(this)?.commit();
 
     }
 
@@ -64,22 +69,28 @@ class Fragment1 : Fragment() {
 
     ): View? {
         println("-----------------");
-
+        Toast.makeText(requireContext(), "Started", Toast.LENGTH_SHORT).show()
+        val activity: MainActivity? = activity as MainActivity?
 
         val view:View = inflater.inflate(R.layout.fragment_1, container, false)
         //////////**********************************************----------------------------------------------------------
 
 
-
-
+        Toast.makeText(requireContext(), this.tag.toString(), Toast.LENGTH_SHORT).show()
         val locationTXT = view.findViewById<TextView>(R.id.textViewLocation);
+        val SubtextView2 = view.findViewById<TextView>(R.id.SubtextView2);
 
-//        val bundle0 = this.arguments;
-//        val mm = bundle0?.getString("d1")
+
+        val bundle0 = this.arguments;
+        val mm = bundle0?.getString("d1")
 //
 
-//        locationTXT.text =mm.toString();
-        locationTXT.text =cityNameParam
+        locationTXT.text =mm.toString();
+
+        val myDataFromActivity: String? = activity?.getMyData();
+
+//        locationTXT.text =cityNameParam
+        locationTXT.text = myDataFromActivity
 
 ////
 //        val bundle = this.arguments
@@ -289,7 +300,7 @@ class Fragment1 : Fragment() {
         return view
     }
 
-   
+
 }
 
 
