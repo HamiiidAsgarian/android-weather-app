@@ -21,7 +21,7 @@ val apiKey:String = "24163948dd9155adff1bbec6f4ecac4b";
     private  lateinit var tabLayout: TabLayout
     private lateinit var viewPager2: ViewPager2
     private  lateinit var adaptor: PageAdaptor
-private  var test =" zz";
+private  var test =" NewYork";
 
    fun getMyData():String{
         println("aaa")
@@ -94,13 +94,13 @@ private  var test =" zz";
 //                        adaptor.one = Fragment1();
 
 //                        val fragment: Fragment1 = supportFragmentManager.fragments[0] as Fragment1
-                        supportFragmentManager.beginTransaction()
-                                .detach(fr1)
-                                .attach(fr1)
-                                .commit();
+//                        supportFragmentManager.beginTransaction()
+//                                .detach(fr1)
+//                                .attach(fr1)
+//                                .commit();
 
-                    var aaa =viewPager2.adapter
-                        aaa?.notifyDataSetChanged();//recreate()
+//                    var aaa =viewPager2.adapter
+//                        aaa?.notifyDataSetChanged();//recreate()
                     }
 //                    var frg: Fragment? = null
 //                    frg = supportFragmentManager.findFragmentByTag("f0")
@@ -108,7 +108,7 @@ private  var test =" zz";
 //                    ft.detach(frg!!)
 //                    ft.attach(frg!!)
 //                    ft.commit()
-                   adaptor.notifyDataSetChanged()
+//                   adaptor.notifyDataSetChanged()
                 }
 
 
@@ -125,10 +125,10 @@ private  var test =" zz";
             TabLayoutMediator(tabLayout, viewPager2) { tab, position ->
                 when (position) {
                     0 -> {
-                        tab.text = valueT
+                        tab.text = "Status"
                     }
                     1 -> {
-                        tab.text = valueT
+                        tab.text = "Cities"
                     }
 
                 }

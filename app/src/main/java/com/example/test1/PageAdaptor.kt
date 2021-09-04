@@ -9,9 +9,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 
 class PageAdaptor(fm: FragmentManager, lifecycle: Lifecycle, fr1: Fragment1, fr2: Fragment2):FragmentStateAdapter(fm, lifecycle) {
 
-//   override fun getItemPosition(`object`: Any?): Int {
-//            return POSITION_NONE
-//    }
 
 
     var one = fr1
